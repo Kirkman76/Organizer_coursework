@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizer_coursework.DataContext;
 using Organizer_coursework.Extentions;
 using Organizer_coursework.Models;
+using Organizer_coursework.Services.Interfaces;
 
 namespace Organizer_coursework.Controllers
 {
@@ -15,81 +16,46 @@ namespace Organizer_coursework.Controllers
     [ApiController]
     public sealed class DbItemsController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly IItemsService _itemsService; 
 
-        public DbItemsController(DatabaseContext context)
+        public DbItemsController(IItemsService itemsService)
         {
-            _context = context;
+            _itemsService = itemsService;
         }
 
         [HttpGet("{listId}")]
         [Produces("application/json")]
-        public async Task<ActionResult<ICollection<DbItem>>> GetDbItems([FromRoute] Guid listId)
+        public async Task<ActionResult> GetItems(
+            [FromRoute] Guid listId)
         {
-            var dbItems = await _context.Items.Where(item => item.DbListId == listId)
-                .ToListAsync();
-
-            if (dbItems == null)
-            {
-                return NotFound();
-            }
-
-            return dbItems;
+            return Ok(await _itemsService.GetItems(listId));
         }
 
         [HttpPut("{itemId}")]
         [Consumes("application/json")]
-        public async Task<IActionResult> PutDbItem([FromRoute] Guid itemId, OasEditItem oasEditItem)
+        public async Task<IActionResult> EditItem(
+            [FromRoute] Guid itemId,
+            [FromBody] OasEditItem oasEditItem)
         {
-            if (!DbItemExists(itemId))
-            {
-                return NotFound();
-            }
-
-            DbItem dbItem = await _context.Items.FirstOrDefaultAsync(item => item.Id == itemId);
-            dbItem.Title = oasEditItem.Title;
-            dbItem.Description = oasEditItem.Description;
-            dbItem.Deadline = oasEditItem.Deadline;
-            dbItem.Checked = oasEditItem.Checked;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            { }
-
+            await _itemsService.EditItem(itemId, oasEditItem);
             return Ok();
         }
 
         [HttpPost("{listId}")]
         [Consumes("application/json")]
-        public async Task<ActionResult<DbItem>> PostDbItem([FromRoute] Guid listId, OasAddItem oasAddItem)
+        public async Task<ActionResult<DbItem>> AddItem(
+            [FromRoute] Guid listId,
+            [FromBody] OasAddItem oasAddItem)
         {
-            _context.Items.Add(oasAddItem.ToDbItem(listId));
-            await _context.SaveChangesAsync();
-
+            await _itemsService.AddItem(listId, oasAddItem);
             return Ok();
         }
 
         [HttpDelete("{itemId}")]
-        public async Task<IActionResult> DeleteDbItem(Guid itemId)
+        public async Task<IActionResult> DeleteItem(Guid itemId)
         {
-            var dbItem = await _context.Items.FindAsync(itemId);
-            if (dbItem == null)
-            {
-                return NotFound();
-            }
-
-            _context.Items.Remove(dbItem);
-            await _context.SaveChangesAsync();
-
+            await _itemsService.DeleteItem(itemId);
             return Ok();
-        }
-
-        private bool DbItemExists(Guid id)
-        {
-            return _context.Items.Any(e => e.Id == id);
         }
     }
 }

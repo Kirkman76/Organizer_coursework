@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Organizer_coursework.DataContext;
+using Organizer_coursework.Exceptions;
+using Organizer_coursework.Services;
+using Organizer_coursework.Services.Interfaces;
 
 namespace Organizer_coursework
 {
@@ -26,6 +29,12 @@ namespace Organizer_coursework
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddDbContext<DatabaseContext>();
+            services.AddScoped<IListsService, ListsService>();
+            services.AddScoped<IItemsService, ItemsService>();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ExceptionFilter());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
