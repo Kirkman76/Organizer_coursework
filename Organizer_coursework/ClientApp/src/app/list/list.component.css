@@ -1,0 +1,24 @@
+.title {
+    font-size: larger;
+    color: darkorange;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgrey;
+}
+
+.left-container {
+    flex: auto;
+    display: flex;
+    word-wrap: break-word;
+}
+
+.fixed-container {
+    text-align: center;
+}
+
+.text {
+    width: 15vW;
+}

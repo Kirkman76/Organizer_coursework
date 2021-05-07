@@ -6,25 +6,29 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 import { ButtonComponent } from './shared-ui/button/button.component';
+import { ListsComponent } from './lists/lists.component';
+import { ListDetailsComponent } from './list-details/list-details.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     ListComponent,
-    ButtonComponent
+    ButtonComponent,
+    ListsComponent,
+    ListDetailsComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: ListComponent, pathMatch: 'full' },
-      // { path: 'counter', component: CounterComponent },
+      { path: '', component: ListsComponent, pathMatch: 'full' },
+      { path: 'details', component: ListDetailsComponent },
       // { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],

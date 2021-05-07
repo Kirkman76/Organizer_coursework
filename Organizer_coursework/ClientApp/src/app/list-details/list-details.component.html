@@ -1,0 +1,12 @@
+<div *ngFor="let i of list.records">
+    <app-item
+    [itemId]="i.id"
+    [title]="i.title"
+    [description]="i.description"
+    [deadline]="i.deadline"
+    [checked]="i.checked"
+    (onCheck)="changeStatus($event)"
+    (onEdit)="editItem()"
+    (onDelete)="deleteItem()"
+    ></app-item>
+</div>

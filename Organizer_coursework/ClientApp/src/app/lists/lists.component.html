@@ -1,0 +1,8 @@
+<div class="mt-1" *ngFor = "let list of lists">
+    <app-list
+        [title] = "list.title"
+        [description] = "list.description"
+        (onEdit) = "editList(list.id)"
+        (onDelete) = "deleteList(list.id)"
+    ></app-list>
+</div>

@@ -1,8 +1,24 @@
-<div>
-    <div>Название:</div>
-    <div></div>
-    <div>Описание:</div>
-    <div></div>
-    <app-button type="Edit" label="Просмотр"></app-button>
-    <app-button type="Delete" label="Удалить"></app-button>
+<div class="container">
+    <div class="left-container">
+        <div class="left-container">
+            <div class="title mt-2 mb-2 mx-2 pt-2">
+                Название:
+            </div>
+            <div class="text mt-3 mb-2 pt-1">
+                {{ title }}
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="title mt-2 mb-2 mx-2 pt-2">
+                Описание:
+            </div>
+            <div class="text mt-3 mb-2 pt-1">
+                {{ description }}
+            </div>
+        </div>
+    </div>
+    <div class="pt-2 fixed-container">
+        <app-button type="Edit" label="Просмотр" (click)="editList()"></app-button>
+        <app-button type="Delete" label="Удалить" (click)="deleteList()"></app-button>
+    </div>
 </div>
