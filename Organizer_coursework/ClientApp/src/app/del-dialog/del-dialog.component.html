@@ -1,0 +1,6 @@
+<h4 md-dialog-title>Удаление элемента</h4>
+<div class="mb-3" md-dialog-content>Вы уверены что хотите удалить?</div>
+<div md-dialog-actions class="d-flex justify-content-center">
+    <button md-button [mat-dialog-close]="id" class="btn btn-primary btn-sm">Да</button>
+    <button md-button (click)="closeDialog()" class="btn btn-secondary btn-sm ml-4" >Отмена</button>
+</div>

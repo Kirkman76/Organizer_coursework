@@ -37,10 +37,6 @@ export class ListsService {
     return this.http.get<Item>(`${this.itemsUrl}/${id}`);
   }
 
-  checkItem$(id: string, item: EditItem): Observable<any> {
-    return this.http.put(`${this.itemsUrl}/${id}`, item);
-  }
-
   addItem$(id: string, newItem: AddItem): Observable<any> {
     return this.http.post(`${this.itemsUrl}/${id}`, newItem);
   }

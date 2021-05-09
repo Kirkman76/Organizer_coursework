@@ -38,8 +38,6 @@ export class NewItemComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
-
-
   addItem(): void {
     let newItem: AddItem = {
       title: this.titleFormControl.value,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { EditItem } from '../models/edit-item.model';
   templateUrl: './edit-item.component.html',
   styleUrls: ['./edit-item.component.css']
 })
-export class EditItemComponent implements OnInit {
+export class EditItemComponent implements OnInit, OnDestroy {
 
   listId: string;
   itemId: string;
@@ -30,7 +30,7 @@ export class EditItemComponent implements OnInit {
       .subscribe(params => {this.listId = params['listId'],
       this.itemId = params['itemId'];});
      }
-
+     
   ngOnInit() {
     this.buildForm();
     this.listsService.getItem$(this.itemId)
@@ -46,6 +46,11 @@ export class EditItemComponent implements OnInit {
         .deadlineFormControl.setValue(res.deadline.toString().substring(0, 10));
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSubscription)
+    this.routeSubscription.unsubscribe();
   }
 
   editItem(){
@@ -83,5 +88,4 @@ export class EditItemComponent implements OnInit {
       deadlineFormControl: this.deadlineFormControl
     })
   }
-
 }

@@ -15,6 +15,10 @@ import { NewListComponent } from './new-list/new-list.component';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { NewItemComponent } from './new-item/new-item.component';
 import { EditItemComponent } from './edit-item/edit-item.component';
+import { DelDialogComponent } from './del-dialog/del-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,22 +31,26 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     ItemComponent,
     NewListComponent,
     NewItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    DelDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', component: ListsComponent, pathMatch: 'full' },
       { path: 'details', component: ListDetailsComponent },
       { path: 'new-list', component: NewListComponent },
       { path: 'new-item', component: NewItemComponent },
       { path: 'edit-item', component: EditItemComponent },
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DelDialogComponent]
 })
 export class AppModule { }

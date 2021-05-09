@@ -12,8 +12,6 @@ export class ListComponent{
   @Output() onEdit = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
-  constructor() { }
-
   editList(): void {
     this.onEdit.emit();
   }

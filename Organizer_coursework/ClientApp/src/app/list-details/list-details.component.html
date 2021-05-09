@@ -10,6 +10,6 @@
     [checked]="i.checked"
     (onCheck)="changeStatus($event)"
     (onEdit)="editItem(i.id)"
-    (onDelete)="deleteItem(i.id)"
+    (onDelete)="delConfirmDialog(i.id)"
     ></app-item>
 </div>
