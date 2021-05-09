@@ -1,0 +1,32 @@
+<h4 class="mb-3">Создать новую задачу</h4>
+<button class="btn btn-danger mb-3" type="button" [routerLink]="['/details']" [queryParams]="{listId: listId}">Назад</button>
+<form [formGroup]="newItemFormGroup">
+    <input type="text"
+        formControlName="titleFormControl"
+        placeholder="Заголовок"
+        class="form-control mb-2"/>
+
+    <div class="alert alert-danger"
+        *ngIf="titleFormControl.invalid && titleFormControl.touched">
+        Укажите заголовок
+        </div>
+    
+    <textarea rows="10" cols="30"
+    formControlName="descriptionFormControl"
+        class="form-control mb-2"
+        placeholder="Запись"></textarea>
+
+    <div class="alert alert-danger"
+            *ngIf="descriptionFormControl.invalid && descriptionFormControl.touched">
+            Описание не менее 10 символов
+        </div>
+
+    <input type="date"
+    formControlName="deadlineFormControl"
+    class="form-control">
+
+    <button class="btn btn-primary mt-3"
+     [disabled]="newItemFormGroup.invalid"
+     (click)="addItem()">Добавить</button>
+
+</form>

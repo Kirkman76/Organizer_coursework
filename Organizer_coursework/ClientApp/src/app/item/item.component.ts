@@ -17,7 +17,7 @@ export class ItemComponent{
   @Output() onDelete = new EventEmitter();
 
   changeStatus(): void {
-    this.onCheck.emit();
+    this.onCheck.emit([this.checked, this.itemId]);
   }
 
   editItem(): void {

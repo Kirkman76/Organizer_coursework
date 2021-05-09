@@ -1,12 +1,9 @@
-.col {
-    display: inline;
-    font-size: larger;
-    color: peru;
-}
-
 .col1 {
     font-size: larger;
-    color: peru;
+    /* color: peru; */
+    color:rgb(163, 131, 25);
+    margin-bottom: 1vh;
+    margin-left: 1vw;
 }
 
 .description {

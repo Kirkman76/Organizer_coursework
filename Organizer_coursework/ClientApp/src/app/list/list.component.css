@@ -1,6 +1,7 @@
 .title {
     font-size: larger;
-    color: darkorange;
+    font-weight: 500;
+    color:rgb(163, 131, 25)
 }
 
 .container {

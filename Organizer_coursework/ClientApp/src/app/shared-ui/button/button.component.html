@@ -1,8 +1,8 @@
 <button
     type="button"
-    class="btn"
-    [class.btn-danger] = "type == 'Delete'"
-    [class.btn-primary] = "type == 'Edit'"
+    class="btn fw-500"
+    [class.btn-outline-danger] = "type == 'Delete'"
+    [class.btn-outline-primary] = "type == 'Edit'"
     (click)="click()">
     {{ label }}
 </button>

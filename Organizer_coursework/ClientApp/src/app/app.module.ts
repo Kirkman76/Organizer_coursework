@@ -11,6 +11,10 @@ import { ButtonComponent } from './shared-ui/button/button.component';
 import { ListsComponent } from './lists/lists.component';
 import { ListDetailsComponent } from './list-details/list-details.component';
 import { ItemComponent } from './item/item.component';
+import { NewListComponent } from './new-list/new-list.component';
+import { ReactiveFormsModule }   from '@angular/forms';
+import { NewItemComponent } from './new-item/new-item.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +24,22 @@ import { ItemComponent } from './item/item.component';
     ButtonComponent,
     ListsComponent,
     ListDetailsComponent,
-    ItemComponent
+    ItemComponent,
+    NewListComponent,
+    NewItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: ListsComponent, pathMatch: 'full' },
       { path: 'details', component: ListDetailsComponent },
-      // { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'new-list', component: NewListComponent },
+      { path: 'new-item', component: NewItemComponent },
+      { path: 'edit-item', component: EditItemComponent },
     ])
   ],
   providers: [],
