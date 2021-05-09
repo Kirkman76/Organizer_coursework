@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { title } from 'process';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { DelDialogComponent } from '../del-dialog/del-dialog.component';
 import { ListsService } from '../lists.service';
 import { EditItem } from '../models/edit-item.model';
 import { List } from '../models/list.model';
@@ -21,7 +22,8 @@ export class ListDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private listsService: ListsService,
-    private router: Router) {
+    private router: Router,
+    private dialog: MatDialog) {
       this.routeSubscription = route.queryParams
       .subscribe(params => this.listId = params['listId']);
       this.list = new List();
@@ -60,11 +62,17 @@ export class ListDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/edit-item'], {queryParams: {listId: this.listId, itemId: itemId}});
   }
 
-  deleteItem(id: string): void {
-    this.listsService.delItem$(id).pipe(
-      finalize(() => this.initList())
-    )
-    .subscribe();
-  }
+  delConfirmDialog(id: string): void{
+    const delDialog = this.dialog.open(DelDialogComponent, {
+      data: id
+    });
 
+    delDialog.afterClosed().subscribe(result => {
+      if (result != null)
+      this.listsService.delItem$(id).pipe(
+        finalize(() => this.initList())
+      )
+      .subscribe();
+    });
+  }
 }

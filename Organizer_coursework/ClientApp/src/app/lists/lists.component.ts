@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListsService } from '../lists.service';
 import { List } from '../models/list.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DelDialogComponent } from '../del-dialog/del-dialog.component';
 
 @Component({
   selector: 'app-lists',
@@ -10,11 +12,13 @@ import { List } from '../models/list.model';
 })
 export class ListsComponent implements OnInit {
 
-  lists: List[]
+  lists: List[];
+  openDialog: boolean = false;
 
   constructor(
     private listsService: ListsService,
-    private router: Router) { }
+    private router: Router,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.initLists();
@@ -30,8 +34,15 @@ export class ListsComponent implements OnInit {
     this.router.navigate(['/details'], {queryParams: {listId: id}});
   }
 
-  deleteList(id: string){
-    this.listsService.delList$(id)
+  delConfirmDialog(id: string): void{
+    const delDialog = this.dialog.open(DelDialogComponent, {
+      data: id
+    });
+
+    delDialog.afterClosed().subscribe(result => {
+      if (result != null)
+      this.listsService.delList$(result)
     .subscribe(() => this.initLists())
+    });
   }
 }
