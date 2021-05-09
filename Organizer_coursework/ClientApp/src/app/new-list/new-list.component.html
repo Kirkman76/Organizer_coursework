@@ -1,0 +1,28 @@
+<h4 class="mb-3">Создать новую группу задач</h4>
+<button class="btn btn-danger mb-3" type="button" [routerLink]="['']">Назад</button>
+<form [formGroup]="newListFormGroup">
+    <input type="text"
+        formControlName="titleFormControl"
+        placeholder="Заголовок"
+        class="form-control mb-2"/>
+
+    <div class="alert alert-danger"
+        *ngIf="titleFormControl.invalid && titleFormControl.touched">
+        Укажите заголовок
+        </div>
+    
+    <textarea rows="10" cols="30"
+    formControlName="descriptionFormControl"
+        class="form-control mb-3"
+        placeholder="Запись"></textarea>
+
+    <div class="alert alert-danger"
+            *ngIf="descriptionFormControl.invalid && descriptionFormControl.touched">
+            Описание не менее 10 символов
+        </div>
+
+    <button class="btn btn-primary"
+     [disabled]="newListFormGroup.invalid"
+     (click)="addList()">Добавить</button>
+
+</form>

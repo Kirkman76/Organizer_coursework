@@ -23,7 +23,15 @@ namespace Organizer_coursework.Controllers
             _itemsService = itemsService;
         }
 
-        [HttpGet("{listId}")]
+        [HttpGet("{itemId}")]
+        [Produces("application/json")]
+        public async Task<ActionResult> GetItem(
+            [FromRoute] Guid itemId)
+        {
+            return Ok(await _itemsService.GetItem(itemId));
+        }
+
+        [HttpGet("{listId}/alllist")]
         [Produces("application/json")]
         public async Task<ActionResult> GetItems(
             [FromRoute] Guid listId)

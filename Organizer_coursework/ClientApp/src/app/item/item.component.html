@@ -1,0 +1,28 @@
+<div class="table-primary pb-3">
+    <div class="col1">
+        Заголовок:
+    </div>
+    <h4 class="ml-3">
+        {{ title }}
+    </h4>
+    <div class="col1">
+        Описание:
+    </div>
+    <span class="description ml-3">
+        {{ description }}
+    </span>
+    <div class="col1">
+        Выполнить до:
+    </div>
+    <span class="description ml-3">
+        {{ deadline | date:'yyy-MM-dd'}}
+    </span>
+    <div class="col1">
+        <span>Выполнено:&nbsp;&nbsp;&nbsp;</span>
+        <input type="checkbox" (change)="changeStatus()" [(ngModel)]="checked"/>
+    </div>
+    <div>
+        <app-button class="ml-2 mb-2" type="Edit" label="Редактировать" (onClick)="editItem()"></app-button>
+        <app-button class="ml-2 mb-2" type="Delete" label="Удалить" (onClick)="deleteItem()"></app-button>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.col1 {
+    font-size: larger;
+    /* color: peru; */
+    color:rgb(163, 131, 25);
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+}
+
+.description {
+    font-size: large;
+    font-weight: 500;
+}

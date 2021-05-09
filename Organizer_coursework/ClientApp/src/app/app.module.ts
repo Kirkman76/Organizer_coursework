@@ -6,26 +6,40 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ListComponent } from './list/list.component';
+import { ButtonComponent } from './shared-ui/button/button.component';
+import { ListsComponent } from './lists/lists.component';
+import { ListDetailsComponent } from './list-details/list-details.component';
+import { ItemComponent } from './item/item.component';
+import { NewListComponent } from './new-list/new-list.component';
+import { ReactiveFormsModule }   from '@angular/forms';
+import { NewItemComponent } from './new-item/new-item.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    ListComponent,
+    ButtonComponent,
+    ListsComponent,
+    ListDetailsComponent,
+    ItemComponent,
+    NewListComponent,
+    NewItemComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: ListsComponent, pathMatch: 'full' },
+      { path: 'details', component: ListDetailsComponent },
+      { path: 'new-list', component: NewListComponent },
+      { path: 'new-item', component: NewItemComponent },
+      { path: 'edit-item', component: EditItemComponent },
     ])
   ],
   providers: [],

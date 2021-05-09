@@ -20,6 +20,18 @@ namespace Organizer_coursework.Services
             _context = context;
         }
 
+        public async Task<DbItem> GetItem(Guid itemId)
+        {
+            var dbItem = await _context.Items.FirstOrDefaultAsync(item => item.Id == itemId);
+
+            if (dbItem == null)
+            {
+                throw new NotFoundException();
+            }
+
+            return dbItem;
+        }
+
         public async Task<ICollection<DbItem>> GetItems(Guid listId)
         {
             var dbItems = await _context.Items.Where(item => item.DbListId == listId)

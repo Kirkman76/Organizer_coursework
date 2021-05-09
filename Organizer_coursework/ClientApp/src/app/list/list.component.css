@@ -1,0 +1,25 @@
+.title {
+    font-size: larger;
+    font-weight: 500;
+    color:rgb(163, 131, 25)
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgrey;
+}
+
+.left-container {
+    flex: auto;
+    display: flex;
+    word-wrap: break-word;
+}
+
+.fixed-container {
+    text-align: center;
+}
+
+.text {
+    width: 15vW;
+}

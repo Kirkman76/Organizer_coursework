@@ -1,0 +1,15 @@
+<h4 class="mb-3">Задачи</h4>
+<button class="btn btn-info mb-3" type="button" [routerLink]="['/new-item']" [queryParams]="{listId: listId}">Новая задача</button>
+<button class="btn btn-danger mb-3 ml-2" type="button" [routerLink]="['']">Назад</button>
+<div class="mb-1" *ngFor="let i of list.records">
+    <app-item
+    [itemId]="i.id"
+    [title]="i.title"
+    [description]="i.description"
+    [deadline]="i.deadline"
+    [checked]="i.checked"
+    (onCheck)="changeStatus($event)"
+    (onEdit)="editItem(i.id)"
+    (onDelete)="deleteItem(i.id)"
+    ></app-item>
+</div>

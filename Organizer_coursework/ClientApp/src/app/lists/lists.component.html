@@ -1,0 +1,12 @@
+<h2 class="mb-3">Группы задач</h2>
+<button class="btn btn-info mb-3" type="button" [routerLink]="['/new-list']">Новая группа</button>
+<div class="mb-1" *ngFor = "let list of lists">
+    <app-list
+        [title] = "list.title"
+        [description] = "list.description"
+        (onEdit) = "editList(list.id)"
+        (onDelete) = "deleteList(list.id)"
+    ></app-list>
+</div>
+
+<div *ngIf=""></div>
