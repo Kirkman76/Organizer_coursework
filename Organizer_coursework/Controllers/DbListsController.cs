@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace Organizer_coursework.Controllers
             _listsService = listsService;
         }
 
+        [Authorize]
         [HttpGet]
         [Produces("application/json")]
         public async Task<ActionResult> GetLists()
@@ -30,6 +32,7 @@ namespace Organizer_coursework.Controllers
             return Ok(await _listsService.GetLists());
         }
 
+        [Authorize]
         [HttpGet("{listId}")]
         [Produces("application/json")]
         public async Task<ActionResult> GetList([FromRoute] Guid listId)
@@ -37,6 +40,7 @@ namespace Organizer_coursework.Controllers
             return Ok(await _listsService.GetList(listId));
         }
 
+        [Authorize]
         [HttpPut("{listId}")]
         [Consumes("application/json")]
         public async Task<IActionResult> EditList(
@@ -47,6 +51,7 @@ namespace Organizer_coursework.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost]
         [Consumes("application/json")]
         public async Task<ActionResult> AddList([FromBody] OasAddList newList)
@@ -56,6 +61,7 @@ namespace Organizer_coursework.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("{listId}")]
         public async Task<IActionResult> DeleteList([FromRoute] Guid listId)
         {

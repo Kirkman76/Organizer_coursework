@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace Organizer_coursework.Controllers
 {
     [Route("api/items")]
     [ApiController]
+    [Authorize]
     public sealed class DbItemsController : ControllerBase
     {
         private readonly IItemsService _itemsService; 
@@ -23,6 +25,7 @@ namespace Organizer_coursework.Controllers
             _itemsService = itemsService;
         }
 
+        [Authorize]
         [HttpGet("{itemId}")]
         [Produces("application/json")]
         public async Task<ActionResult> GetItem(
@@ -31,6 +34,7 @@ namespace Organizer_coursework.Controllers
             return Ok(await _itemsService.GetItem(itemId));
         }
 
+        [Authorize]
         [HttpGet("{listId}/alllist")]
         [Produces("application/json")]
         public async Task<ActionResult> GetItems(
@@ -39,6 +43,7 @@ namespace Organizer_coursework.Controllers
             return Ok(await _itemsService.GetItems(listId));
         }
 
+        [Authorize]
         [HttpPut("{itemId}")]
         [Consumes("application/json")]
         public async Task<IActionResult> EditItem(
@@ -49,6 +54,7 @@ namespace Organizer_coursework.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost("{listId}")]
         [Consumes("application/json")]
         public async Task<ActionResult<DbItem>> AddItem(
@@ -59,6 +65,7 @@ namespace Organizer_coursework.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("{itemId}")]
         public async Task<IActionResult> DeleteItem(Guid itemId)
         {

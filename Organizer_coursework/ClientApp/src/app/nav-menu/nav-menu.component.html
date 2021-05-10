@@ -3,7 +3,8 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Organizer_coursework</a>
+      <a class="navbar-brand" [routerLink]="['/']">Team organiZer</a>
+      
       <button
         class="navbar-toggler"
         type="button"
@@ -19,6 +20,10 @@
         class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
       >
+      <div class="text-info">{{ userName }}</div>
+      <button class="btn-outline-primary ml-3" *ngIf="isLogged()" (click)="logout()">
+        Выйти из аккаунта
+      </button>
         <ul class="navbar-nav flex-grow">
           <li
             class="nav-item"
@@ -28,15 +33,9 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
+            <a class="nav-link text-dark" [routerLink]="['/lists']"
+              >Tasks</a>
+            </li>
         </ul>
       </div>
     </div>

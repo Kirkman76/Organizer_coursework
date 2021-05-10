@@ -58,7 +58,6 @@ namespace Organizer_coursework.Services
 
         public async Task AddList(OasAddList newList)
         {
-
             _context.Lists.Add(newList.ToDbList());
             await _context.SaveChangesAsync();
         }
