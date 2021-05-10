@@ -4,6 +4,7 @@ import { ListsService } from '../lists.service';
 import { List } from '../models/list.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DelDialogComponent } from '../del-dialog/del-dialog.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-lists',
@@ -17,10 +18,13 @@ export class ListsComponent implements OnInit {
 
   constructor(
     private listsService: ListsService,
+    private authService: AuthService,
     private router: Router,
     private dialog: MatDialog) { }
 
   ngOnInit() {
+    if (!this.authService.isAuthenticated())
+    this.router.navigate(['']);
     this.initLists();
   }
 

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import { ListsService } from '../lists.service';
 import { EditItem } from '../models/edit-item.model';
 
@@ -25,6 +26,7 @@ export class EditItemComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private listsService: ListsService,
+    private authService: AuthService,
     private router: Router) {
       this.routeSubscription = route.queryParams
       .subscribe(params => {this.listId = params['listId'],
@@ -32,6 +34,8 @@ export class EditItemComponent implements OnInit, OnDestroy {
      }
      
   ngOnInit() {
+    if (!this.authService.isAuthenticated())
+    this.router.navigate(['']);
     this.buildForm();
     this.listsService.getItem$(this.itemId)
     .subscribe(res => {

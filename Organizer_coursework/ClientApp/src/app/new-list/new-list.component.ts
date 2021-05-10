@@ -4,6 +4,7 @@ import { ListsService } from '../lists.service';
 import { AddList } from '../models/add-list.model';
 import { finalize } from 'rxjs/operators'
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-new-list',
@@ -18,9 +19,12 @@ export class NewListComponent implements OnInit {
 
   constructor(
     private listsService: ListsService,
+    private authService: AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
+    if (!this.authService.isAuthenticated())
+    this.router.navigate(['']);
     this.buildForm();
   }
 
@@ -32,7 +36,7 @@ export class NewListComponent implements OnInit {
     };
 
     this.listsService.addList$(newList).pipe(
-      finalize(() => this.router.navigate(['']))
+      finalize(() => this.router.navigate(['/lists']))
     ).subscribe();
   }
 

@@ -1,0 +1,37 @@
+<h2>Регистрация</h2>
+<button class="btn btn-danger mb-3" type="button" [routerLink]="['']">Назад</button>
+<form [formGroup]="registerFormGroup">
+    <input type="text"
+        formControlName="nameFormControl"
+        class="form-control mb-2"
+        placeholder="Имя"/>
+
+    <div class="alert alert-danger"
+        *ngIf="nameFormControl.invalid && nameFormControl.touched">
+        Не корректное имя
+    </div>
+
+    <input type="text"
+        formControlName="emailFormControl"
+        class="form-control mb-2"
+        placeholder="Email"/>
+
+    <div class="alert alert-danger"
+        *ngIf="emailFormControl.invalid && emailFormControl.touched">
+        Не корректрый email
+        </div>
+    
+    <input type="password"
+        formControlName="passwordFormControl"
+        class="form-control mb-2"
+        placeholder="Пароль">
+
+    <div class="alert alert-danger"
+            *ngIf="passwordFormControl.invalid && passwordFormControl.touched">
+            Не корректрый пароль
+        </div>
+
+    <button class="btn btn-primary mt-3"
+     [disabled]="registerFormGroup.invalid"
+     (click)="register()">Зарегистрироваться</button>
+</form>
