@@ -1,0 +1,39 @@
+<h2>Вход на сайт</h2>
+
+<button
+    class="btn btn-success mb-3"
+    [disabled]="isLogged()"
+    [routerLink]="'/register'">
+    Регистрация</button>
+
+<button
+    class="btn btn-primary mb-3 ml-2"
+    [disabled]="!isLogged()"
+    (click)="logout()">
+    Выйти из аккаунта</button>
+
+<form [formGroup]="loginFormGroup">
+    <input type="text"
+        formControlName="emailFormControl"
+        class="form-control mb-2"
+        placeholder="Email"/>
+
+    <div class="alert alert-danger"
+        *ngIf="emailFormControl.invalid && emailFormControl.touched">
+        Не корректрый email
+        </div>
+    
+    <input type="password"
+        formControlName="passwordFormControl"
+        class="form-control mb-2"
+        placeholder="Пароль">
+
+    <div class="alert alert-danger"
+            *ngIf="passwordFormControl.invalid && passwordFormControl.touched">
+            Не корректрый пароль
+        </div>
+
+    <button class="btn btn-primary mt-3"
+     [disabled]="loginFormGroup.invalid"
+     (click)="tryLogin()">Войти</button>
+</form>

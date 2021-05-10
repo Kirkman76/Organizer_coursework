@@ -1,4 +1,5 @@
 ﻿using Organizer_coursework.Models;
+using Organizer_coursework.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,18 @@ namespace Organizer_coursework.Extentions
                 Description = addItemModel.Description,
                 Deadline = addItemModel.Deadline,
                 Checked = addItemModel.Checked
+            };
+        }
+
+        public static DbUser ToDbUser (this RegistrationUser regUser)
+        {
+            return new DbUser
+            {
+                Id = Guid.NewGuid(),
+                Name = regUser.Name,
+                Email = regUser.Email,
+                Password = regUser.Password,
+                Role = UserRole.User
             };
         }
     }

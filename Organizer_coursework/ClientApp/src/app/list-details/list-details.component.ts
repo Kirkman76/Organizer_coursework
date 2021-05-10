@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import { DelDialogComponent } from '../del-dialog/del-dialog.component';
 import { ListsService } from '../lists.service';
 import { EditItem } from '../models/edit-item.model';
@@ -22,6 +23,7 @@ export class ListDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private listsService: ListsService,
+    private authService: AuthService,
     private router: Router,
     private dialog: MatDialog) {
       this.routeSubscription = route.queryParams
@@ -30,6 +32,8 @@ export class ListDetailsComponent implements OnInit, OnDestroy {
      }
   
   ngOnInit() {
+    if (!this.authService.isAuthenticated())
+    this.router.navigate(['']);
     this.initList();
   }
 

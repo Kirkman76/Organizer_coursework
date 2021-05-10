@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  tokenDomains: ['localhost:44325']
 };
