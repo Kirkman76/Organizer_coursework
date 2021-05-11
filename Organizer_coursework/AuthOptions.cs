@@ -11,7 +11,7 @@ namespace Organizer_coursework
 
         const string KEY = "mysupersecret_secretkey!123";
 
-        public const int LIFETIME = 3;
+        public const int LIFETIME = 30;
 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {

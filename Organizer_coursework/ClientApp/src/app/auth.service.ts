@@ -32,6 +32,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
+    this.onGetData.emit();
     var token = localStorage.getItem(ACCESS_TOKEN_KEY);
     return token && !this.jwtHelper.isTokenExpired(token);
   }

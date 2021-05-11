@@ -10,8 +10,8 @@ using Organizer_coursework.DataContext;
 namespace Organizer_coursework.Migrations.Users
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20210510154714_addUniqoeEmail")]
-    partial class addUniqoeEmail
+    [Migration("20210511060557_InitMigrUC")]
+    partial class InitMigrUC
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

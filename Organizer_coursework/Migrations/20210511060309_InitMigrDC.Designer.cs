@@ -10,8 +10,8 @@ using Organizer_coursework.DataContext;
 namespace Organizer_coursework.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210504211004_Initial")]
-    partial class Initial
+    [Migration("20210511060309_InitMigrDC")]
+    partial class InitMigrDC
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
